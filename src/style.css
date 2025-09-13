@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: theme("fontFamily.sans"); 
+  }
+}
+
+@theme {
+    --color-border: #4E4E4E;
+    --color-font: #181818;
+    --color-gradient: #666666;
+}
