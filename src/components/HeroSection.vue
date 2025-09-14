@@ -1,22 +1,67 @@
 <template>
   <section ref="sectionRef" class="h-screen flex items-center justify-center bg-black">
-    <div class="relative w-full h-[400px]">
-      <div class="relative z-10">
-        <h1 class="text-white">111</h1>  
+    <img :src="polygon" 
+       alt="polygon" 
+       class="absolute -top-40 left-0 w-full h-auto z-0 hidden sm:block" />
+    <div class="relative w-full mt-50 p-5 sm:p-10 md:p-15 lg:p-50">
+      <div class="grid grid-cols-1 gap-2 
+            md:grid-cols-4 md:grid-rows-4 md:gap-0">
+
+      <div class="order-1 
+                  md:col-span-2 md:row-start-1 md:row-end-2 text-hero-title text-white font-display font-semibold">
+        AI YouTube 
       </div>
-      <img :src="polygon" />
+
+      <div class="order-2 
+                  md:col-start-2 md:col-end-4 md:row-start-2 md:row-end-3 text-hero-title text-white font-display font-semibold">
+        Metadata 
+      </div>
+
+      <div class="order-3 
+                  md:col-span-2 md:row-start-3 md:row-end-4 text-hero-title text-white font-display font-semibold">
+        Translation
+      </div>
+
+      <div class="order-4 
+                  md:col-start-3 md:col-end-4 md:row-start-3 md:row-end-4 text-white font-regular text-hero-description">
+        Take Your YouTube Content Global by Localizing Your YouTube Metadata.
+      </div>
+
+      <div class="order-5 
+                  md:col-start-1 md:col-end-2 md:row-start-2 md:row-end-3 text-white font-display font-semibold
+                  flex items-center">
+        <button class="button">
+          <span class="uppercase">what is this ?</span>
+          <span class="circle">
+            <span class="inner">
+              <img :src="play" />
+            </span>
+          </span>
+        </button>
+      </div>
+
+      <div class="order-6 
+                  md:col-start-4 md:col-end-5 md:row-start-3 md:row-end-5">
+        <div class="flex bg-blue text-white rounded-full h-45 w-45 justify-center items-center">
+          TRY FOR FREE
+        </div>
+      </div>
+    </div>
+
+      
       
     </div>
   </section>
-  <div class="bg-white z-20">
-    <img :src="pixels" />
+  <div class="relative bg-white z-20">
+    <img :src="pixels" class="w-full" />
   </div>
 </template>
 
 <script setup>
 import { ref, defineExpose } from 'vue'
 import polygon from '@/assets/polygons.png'
-import pixels from '@/assets/hero-pixels.jpg'
+import pixels from '@/assets/hero-pixels.png'
+import play from '@/assets/play.svg'
 
 const sectionRef = ref(null)
 
@@ -24,3 +69,74 @@ defineExpose({
   sectionRef
 })
 </script>
+
+<style lang="scss">
+  .button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 270px;
+    height: 85px;
+    position: relative;
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    z-index: 0;
+    font-size: 40;
+    cursor: pointer;
+
+    span {
+      color: white;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      padding: 2px;
+      background: linear-gradient(45deg, #FFFFFF, #FD86FF, #FB38FF, #3858FF, #8BFF78);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      z-index: -1;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+
+      &::before {
+        background-position: 100% 100%;
+        background-size: 300% 300%;
+      }
+    }
+  }
+
+  .circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    padding: 2px;
+    background: linear-gradient(45deg, #FFFFFF, #FD86FF, #FB38FF, #3858FF, #8BFF78);
+    -webkit-mask: radial-gradient(farthest-side, #fff 95%, #000 100%) content-box,
+                  radial-gradient(farthest-side, #fff 95%, #000 100%);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    cursor: pointer;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+</style>

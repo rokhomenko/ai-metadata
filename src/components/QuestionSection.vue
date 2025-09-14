@@ -1,11 +1,12 @@
 <template>
-  <section ref="sectionRef" class="h-screen bg-gray-100 flex items-center justify-center">
-    <h1 class="text-black text-5xl font-bold">Question</h1>
+  <section ref="sectionRef" class="relative z-20 h-screen bg-white flex items-center justify-center">
+    <img :src="bullhorn" />
   </section>
 </template>
 
 <script setup>
 import { ref, defineExpose } from 'vue'
+import bullhorn from '@/assets/Bullhorn.svg'
 
 const sectionRef = ref(null)
 

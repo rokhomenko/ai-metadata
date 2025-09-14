@@ -1,13 +1,27 @@
+@font-face {
+    font-family: Gilroy-semibold;
+    src: url('@/assets/fonts/Gilroy-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: Gilroy-regular;
+    src: url('@/assets/fonts/Gilroy-Regular.ttf');
+}
+
 @import "tailwindcss";
 
 @layer base {
   body {
-    font-family: theme("fontFamily.sans"); 
+    @apply font-sans;
   }
 }
 
 @theme {
+    --font-semibold: "Gilroy-semibold", sans-serif;
+    --font-regular: "Gilroy-regular", sans-serif;
     --color-border: #4E4E4E;
     --color-font: #181818;
-    --color-gradient: #666666;
+    --color-blue: #2E59E7;
+    --text-hero-title: 140px;
+    --text-hero-description: 20px;
 }
