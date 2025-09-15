@@ -28,10 +28,10 @@
           </button>
           <button
             :class="[
-              'px-4 py-2 rounded text-sm font-medium uppercase transition-all duration-300 cursor-pointer',
+              'sign-btn px-4 py-2 rounded text-sm font-medium uppercase cursor-pointer',
               isDark
-                ? 'bg-transparent text-white border border-white hover:bg-white hover:text-black'
-                : 'bg-transparent text-black border border-black hover:bg-black hover:text-white'
+                ? 'text-white border border-white'
+                : 'text-black border border-black'
             ]"
           >
             Sign Up
@@ -89,3 +89,50 @@
     { immediate: true }
   )
 </script>
+
+<style scoped lang="scss">
+  .sign-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.6s ease-in-out;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      clip-path: circle(0% at 0% 100%);
+      transition: clip-path 0.6s ease-in-out;
+    }
+
+    &:hover {
+      &::before {
+        clip-path: circle(150% at 0% 100%);
+      }
+    }
+  }
+
+  .sign-btn.border-white {
+    color: white;
+    &:hover {
+      color: black;
+    }
+    &::before {
+      background-color: white;
+    }
+  }
+
+  .sign-btn.border-black {
+    color: black;
+    &:hover {
+      color: white;
+    }
+    &::before {
+      background-color: black;
+    }
+  }
+</style>
