@@ -4,70 +4,139 @@
        alt="polygon" 
        class="absolute -top-40 left-0 w-full h-auto z-0 hidden sm:block" />
     <div class="relative w-full mt-50 p-5 sm:p-10 md:p-15 xl:p-50">
-      <div class="grid grid-cols-1 gap-2 
-            md:grid-cols-4 md:grid-rows-4 md:gap-0">
-
-      <div class="order-1 
-                  md:col-span-2 md:row-start-1 md:row-end-2 xl:text-hero-title lg:text-[80px] md:text-[70px] text-white font-display font-semibold">
-        AI YouTube 
-      </div>
-
-      <div class="order-2 
-                  md:col-start-2 md:col-end-4 md:row-start-2 md:row-end-3 xl:text-hero-title lg:text-[70px] md:text-[70px] text-white font-display font-semibold">
-        Metadata 
-      </div>
-
-      <div class="order-3 
-                  md:col-span-2 md:row-start-3 md:row-end-4 xl:text-hero-title lg:text-[80px] md:text-[70px] text-white font-display font-semibold">
-        Translation
-      </div>
-
-      <div class="order-4 
-                  md:col-start-3 md:col-end-4 md:row-start-3 md:row-end-4 text-white font-regular text-hero-description">
-        Take Your YouTube Content Global by Localizing Your YouTube Metadata.
-      </div>
-
-      <div class="order-5 
-                  md:col-start-1 md:col-end-2 md:row-start-2 md:row-end-3 text-white font-display font-semibold
-                  flex items-center">
-        <button class="button">
-          <span class="uppercase">what is this ?</span>
-          <span class="circle">
-            <span class="inner">
-              <img :src="play" />
+      <div class="grid grid-cols-1 gap-2 md:grid-cols-4 md:grid-rows-4 md:gap-0">
+        <div class="order-1 md:col-span-2 md:row-start-1 md:row-end-2
+                    xl:text-hero-title lg:text-[80px] md:text-[70px]
+                    text-white font-display font-semibold">
+          AI YouTube 
+        </div>
+        <div class="order-2 md:col-start-2 md:col-end-4 md:row-start-2 md:row-end-3
+                    xl:text-hero-title lg:text-[70px] md:text-[70px]
+                    text-white font-display font-semibold">
+          Metadata 
+        </div>
+        <div class="order-3 md:col-span-2 md:row-start-3 md:row-end-4
+                    xl:text-hero-title lg:text-[80px] md:text-[70px]
+                    text-white font-display font-semibold">
+          Translation
+        </div>
+        <div class="order-4 md:col-start-3 md:col-end-4 md:row-start-3 md:row-end-4
+                  text-white font-regular text-hero-description">
+          Take Your YouTube Content Global by Localizing Your YouTube Metadata.
+        </div>
+        <div class="order-5 md:col-start-1 md:col-end-2 md:row-start-2 md:row-end-3
+                  text-white font-display font-semibold flex items-center">
+          <button class="button">
+            <span class="uppercase">what is this ?</span>
+            <span class="circle">
+              <span class="inner">
+                <img :src="play" />
+              </span>
             </span>
-          </span>
-        </button>
-      </div>
-
-      <div class="order-6 
-                  md:col-start-4 md:col-end-5 md:row-start-3 md:row-end-5 flex justify-center items-center">
-        <div class="flex bg-blue text-white rounded-full h-45 w-45 justify-center items-center">
-          TRY FOR FREE
+          </button>
+        </div>
+        <div 
+          ref="order6Ref"
+          class="order-6 md:col-start-4 md:col-end-5 md:row-start-3 md:row-end-5 flex justify-center items-center relative overflow-hidden"
+        >
+          <div 
+            ref="tryBtnRef"
+            class="flex bg-blue text-white rounded-full h-45 w-45 justify-center items-center hover:cursor-pointer"
+            style="will-change: transform;"
+          >
+            TRY FOR FREE
+          </div>
         </div>
       </div>
     </div>
-
-      
-      
-    </div>
   </section>
+  <div class="cursor-circle"></div>
   <div class="relative bg-white z-20">
     <img :src="pixels" class="w-full" />
   </div>
 </template>
 
 <script setup>
-import { ref, defineExpose } from 'vue'
-import polygon from '@/assets/polygons.png'
-import pixels from '@/assets/hero-pixels.png'
-import play from '@/assets/play.svg'
+  import { ref, onMounted, onBeforeUnmount, defineExpose } from 'vue'
+  import gsap from 'gsap'
 
-const sectionRef = ref(null)
+  import polygon from '@/assets/polygons.png'
+  import pixels from '@/assets/hero-pixels.png'
+  import play from '@/assets/play.svg'
 
-defineExpose({
-  sectionRef
-})
+  const sectionRef = ref(null)
+  const order6Ref = ref(null)
+  const tryBtnRef = ref(null)
+
+  defineExpose({
+    sectionRef
+  })
+
+  let xTo, yTo
+  function globalMouseMove(e) {
+    xTo && xTo(e.clientX)
+    yTo && yTo(e.clientY)
+  }
+  let xToBtn, yToBtn
+
+  function order6MouseMove(e) {
+    const container = order6Ref.value
+    const btn = tryBtnRef.value
+    if (!container || !btn) return
+
+    const rect = container.getBoundingClientRect()
+    const btnRect = btn.getBoundingClientRect()
+
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+
+    const offsetX = x - rect.width / 2
+    const offsetY = y - rect.height / 2
+
+    const factor = 0.35
+
+    const maxX = Math.max(8, (rect.width - btnRect.width) / 2)
+    const maxY = Math.max(8, (rect.height - btnRect.height) / 2)
+
+    let targetX = Math.max(-maxX, Math.min(maxX, offsetX * factor))
+    let targetY = Math.max(-maxY, Math.min(maxY, offsetY * factor))
+
+    xToBtn && xToBtn(targetX)
+    yToBtn && yToBtn(targetY)
+  }
+
+  function order6MouseLeave() {
+    const btn = tryBtnRef.value
+    if (!btn) return
+    gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.45)' })
+  }
+
+  onMounted(() => {
+    gsap.set(".cursor-circle", { xPercent: -50, yPercent: -50 })
+    xTo = gsap.quickTo(".cursor-circle", "x", { duration: 0.28, ease: "power3" })
+    yTo = gsap.quickTo(".cursor-circle", "y", { duration: 0.28, ease: "power3" })
+    window.addEventListener("mousemove", globalMouseMove)
+
+    const container = order6Ref.value
+    const btn = tryBtnRef.value
+    if (container && btn) {
+      gsap.set(btn, { x: 0, y: 0 })
+      xToBtn = gsap.quickTo(btn, "x", { duration: 0.6, ease: "power3.out" })
+      yToBtn = gsap.quickTo(btn, "y", { duration: 0.6, ease: "power3.out" })
+
+      container.addEventListener('pointermove', order6MouseMove)
+      container.addEventListener('pointerleave', order6MouseLeave)
+    }
+  })
+
+  onBeforeUnmount(() => {
+    window.removeEventListener("mousemove", globalMouseMove)
+    const container = order6Ref.value
+    if (container) {
+      container.removeEventListener('pointermove', order6MouseMove)
+      container.removeEventListener('pointerleave', order6MouseLeave)
+    }
+  })
 </script>
 
 <style lang="scss">
@@ -138,5 +207,17 @@ defineExpose({
       width: 24px;
       height: 24px;
     }
+  }
+
+  .cursor-circle {
+    height: 20px;
+    width: 20px;
+    background-color: #2E59E7;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
   }
 </style>
