@@ -3,22 +3,22 @@
     <img :src="polygon" 
        alt="polygon" 
        class="absolute -top-40 left-0 w-full h-auto z-0 hidden sm:block" />
-    <div class="relative w-full mt-50 p-5 sm:p-10 md:p-15 lg:p-50">
+    <div class="relative w-full mt-50 p-5 sm:p-10 md:p-15 xl:p-50">
       <div class="grid grid-cols-1 gap-2 
             md:grid-cols-4 md:grid-rows-4 md:gap-0">
 
       <div class="order-1 
-                  md:col-span-2 md:row-start-1 md:row-end-2 text-hero-title text-white font-display font-semibold">
+                  md:col-span-2 md:row-start-1 md:row-end-2 xl:text-hero-title lg:text-[80px] md:text-[70px] text-white font-display font-semibold">
         AI YouTube 
       </div>
 
       <div class="order-2 
-                  md:col-start-2 md:col-end-4 md:row-start-2 md:row-end-3 text-hero-title text-white font-display font-semibold">
+                  md:col-start-2 md:col-end-4 md:row-start-2 md:row-end-3 xl:text-hero-title lg:text-[70px] md:text-[70px] text-white font-display font-semibold">
         Metadata 
       </div>
 
       <div class="order-3 
-                  md:col-span-2 md:row-start-3 md:row-end-4 text-hero-title text-white font-display font-semibold">
+                  md:col-span-2 md:row-start-3 md:row-end-4 xl:text-hero-title lg:text-[80px] md:text-[70px] text-white font-display font-semibold">
         Translation
       </div>
 
@@ -41,7 +41,7 @@
       </div>
 
       <div class="order-6 
-                  md:col-start-4 md:col-end-5 md:row-start-3 md:row-end-5">
+                  md:col-start-4 md:col-end-5 md:row-start-3 md:row-end-5 flex justify-center items-center">
         <div class="flex bg-blue text-white rounded-full h-45 w-45 justify-center items-center">
           TRY FOR FREE
         </div>
