@@ -37,7 +37,7 @@
         </div>
         <div 
           ref="order6Ref"
-          class="order-6 md:col-start-4 md:col-end-5 md:row-start-3 md:row-end-5 flex justify-center items-center relative overflow-hidden"
+          class="order-6 md:col-start-4 md:col-end-5 z-50 md:row-start-3 md:row-end-5 flex justify-center items-center relative overflow-hidden"
         >
           <div 
             ref="tryBtnRef"
@@ -50,7 +50,7 @@
       </div>
     </div>
   </section>
-  <div class="cursor-circle"></div>
+  <!-- <div class="cursor-circle"></div> -->
   <div class="relative bg-white z-20">
     <img :src="pixels" class="w-full" />
   </div>
@@ -68,15 +68,6 @@
   const order6Ref = ref(null)
   const tryBtnRef = ref(null)
 
-  defineExpose({
-    sectionRef
-  })
-
-  let xTo, yTo
-  function globalMouseMove(e) {
-    xTo && xTo(e.clientX)
-    yTo && yTo(e.clientY)
-  }
   let xToBtn, yToBtn
 
   function order6MouseMove(e) {
@@ -112,11 +103,6 @@
   }
 
   onMounted(() => {
-    gsap.set(".cursor-circle", { xPercent: -50, yPercent: -50 })
-    xTo = gsap.quickTo(".cursor-circle", "x", { duration: 0.28, ease: "power3" })
-    yTo = gsap.quickTo(".cursor-circle", "y", { duration: 0.28, ease: "power3" })
-    window.addEventListener("mousemove", globalMouseMove)
-
     const container = order6Ref.value
     const btn = tryBtnRef.value
     if (container && btn) {
@@ -130,7 +116,6 @@
   })
 
   onBeforeUnmount(() => {
-    window.removeEventListener("mousemove", globalMouseMove)
     const container = order6Ref.value
     if (container) {
       container.removeEventListener('pointermove', order6MouseMove)
@@ -207,17 +192,5 @@
       width: 24px;
       height: 24px;
     }
-  }
-
-  .cursor-circle {
-    height: 20px;
-    width: 20px;
-    background-color: #2E59E7;
-    border-radius: 50%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 9999;
   }
 </style>
