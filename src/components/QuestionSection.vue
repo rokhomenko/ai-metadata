@@ -30,7 +30,7 @@
                 {{ card.description }}
               </div>
               <button
-                class="text-white bg-blue p-5 rounded-[10px] mt-7 mb-10 uppercase font-semibold"
+                class="sign-btn text-white bg-blue p-5 rounded-[10px] mt-7 mb-10 uppercase font-semibold"
               >
                 Start for Free
               </button>
@@ -77,3 +77,32 @@
     }
   ]
 </script>
+
+<style scoped lang="scss">
+  .sign-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.6s ease-in-out;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      background-color: white;
+      clip-path: circle(0% at 0% 100%);
+      transition: clip-path 0.6s ease-in-out;
+    }
+
+    &:hover {
+      color: #2E59E7;
+      &::before {
+        clip-path: circle(150% at 0% 100%);
+      }
+    }
+  }
+</style>
