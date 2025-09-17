@@ -8,42 +8,32 @@
       <div class="font-semibold text-[30px] mt-5">Choose answear</div>
       <img :src="arrow" class="mt-3 mb-20" />
       <div class="flex flex-row gap-25 flex-wrap mb-80">
-        <div class="relative w-[322px] group">
-          <img :src="partially"/>
-          <div class="absolute bg-black h-0 w-[322px] top-[60%]
-                       transition-all delay-100 duration-300 ease-in-out
-                       opacity-0 group-hover:h-[350px] group-hover:opacity-100">
+        <div
+          v-for="(card, idx) in cards"
+          :key="idx"
+          class="relative w-[322px] group"
+        >
+          <img :src="card.img" class="w-full" />
+          <span
+            v-if="card.label"
+            class="absolute inset-0 z-50 flex items-center justify-center text-white font-semibold text-4xl"
+          >
+            {{ card.label }}
+          </span>
+          <div
+            class="absolute bg-black h-0 w-[322px] top-[50%]
+                   transition-all delay-100 duration-300 ease-in-out
+                   opacity-0 group-hover:h-[350px] group-hover:opacity-100"
+          >
             <div class="flex flex-col w-full p-10">
               <div class="text-white text-center font-regular">
-                Awesome! Localizing your YouTube metadata is a perfect choice for you. Let's translate your video titles, descriptions, and tags, so people from all around the globe can discover your content.
+                {{ card.description }}
               </div>
-              <button class="text-white bg-blue p-5 rounded-[10px] mt-7 mb-10 uppercase font-semibold">Start for Free</button>
-            </div>
-          </div>
-        </div>
-        <div class="relative w-[322px] group">
-          <img :src="yes" class="absolute"/>
-          <div class="absolute bg-black h-0 w-[322px] top-[60%]
-                       transition-all delay-100 duration-300 ease-in-out
-                       opacity-0 group-hover:h-[350px] group-hover:opacity-100">
-            <div class="flex flex-col w-full p-10">
-              <div class="text-white text-center font-regular">
-                Awesome! Localizing your YouTube metadata is a perfect choice for you. Let's translate your video titles, descriptions, and tags, so people from all around the globe can discover your content.
-              </div>
-              <button class="text-white bg-blue p-5 rounded-[10px] mt-7 mb-10 uppercase font-semibold">Start for Free</button>
-            </div>
-          </div>
-        </div>
-        <div class="relative w-[322px] group">
-          <img :src="no" class="absolute"/>
-          <div class="absolute bg-black h-0 w-[322px] top-[60%]
-                       transition-all delay-100 duration-300 ease-in-out
-                       opacity-0 group-hover:h-[350px] group-hover:opacity-100">
-            <div class="flex flex-col w-full p-10">
-              <div class="text-white text-center font-regular">
-                Awesome! Localizing your YouTube metadata is a perfect choice for you. Let's translate your video titles, descriptions, and tags, so people from all around the globe can discover your content.
-              </div>
-              <button class="text-white bg-blue p-5 rounded-[10px] mt-7 mb-10 uppercase font-semibold">Start for Free</button>
+              <button
+                class="text-white bg-blue p-5 rounded-[10px] mt-7 mb-10 uppercase font-semibold"
+              >
+                Start for Free
+              </button>
             </div>
           </div>
         </div>
@@ -53,16 +43,37 @@
 </template>
 
 <script setup>
-import { ref, defineExpose } from 'vue'
-import bullhorn from '@/assets/Bullhorn.svg'
-import yes from '@/assets/yes.svg'
-import no from '@/assets/no.svg'
-import partially from '@/assets/partially.svg'
-import arrow from '@/assets/arrow.svg'
+  import { ref, defineExpose } from 'vue'
+  import bullhorn from '@/assets/Bullhorn.svg'
+  import yes from '@/assets/yes.png'
+  import no from '@/assets/no.png'
+  import partially from '@/assets/partially.png'
+  import arrow from '@/assets/arrow.svg'
 
-const sectionRef = ref(null)
+  const sectionRef = ref(null)
 
-defineExpose({
-  sectionRef
-})
+  defineExpose({
+    sectionRef
+  })
+
+  const cards = [
+    {
+      img: partially,
+      label: 'Partially',
+      description:
+        "Awesome! Localizing your YouTube metadata is a perfect choice for you. Let's translate your video titles, descriptions, and tags, so people from all around the globe can discover your content."
+    },
+    {
+      img: yes,
+      label: 'Yes',
+      description:
+        "Awesome! Localizing your YouTube metadata is a perfect choice for you. Let's translate your video titles, descriptions, and tags, so people from all around the globe can discover your content."
+    },
+    {
+      img: no,
+      label: 'No',
+      description:
+        "Awesome! Localizing your YouTube metadata is a perfect choice for you. Let's translate your video titles, descriptions, and tags, so people from all around the globe can discover your content."
+    }
+  ]
 </script>
