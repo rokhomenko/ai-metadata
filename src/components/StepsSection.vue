@@ -2,13 +2,15 @@
   <section ref="sectionRef" class="relative bg-white text-black py-24">
     <div class="container mx-auto grid grid-cols-2 gap-16 h-full">
       <div class="relative">
-        <div class="progress absolute left-15 w-1 h-full bg-gray-200"></div>
-        <div 
-          class="progress-blue absolute left-15 w-1 bg-blue-600"
-          :style="{ height: progressBarHeight + '%' }"
-        >
-        </div>
-        <div class="ml-8 steps">
+        <div
+          class="progress absolute left-6 w-1 bg-gray-200 rounded"
+          :style="{ height: stepsHeight + 'px' }"
+        ></div>
+        <div
+          class="progress-blue absolute left-6 bottom-0 w-1 bg-blue-600 rounded"
+          :style="{ height: (stepsHeight * progressBarHeight / 100) + 'px' }"
+        ></div>
+        <div ref="stepsRef" class="ml-8 steps steps-content">
           <div v-for="step in steps" :key="step.id" class="step-item relative ml-[100px]">
             <div class="flex flex-col items-start gap-6">
               <div class="flex items-center justify-center w-10 h-10 border border-black rounded-full">
@@ -51,6 +53,15 @@
   const currentStep = ref(1);
   const stepProgress = ref(0);
 
+  const stepsRef = ref(null);
+  const stepsHeight = ref(0);
+
+  const measureSteps = () => {
+    if (stepsRef.value) {
+      stepsHeight.value = stepsRef.value.offsetHeight;
+    }
+  };
+
   const handleScroll = () => {
     if (!sectionRef.value) return;
 
@@ -82,10 +93,13 @@
   onMounted(() => {
     window.addEventListener('scroll', handleScroll);
     handleScroll();
+      measureSteps();
+    window.addEventListener('resize', measureSteps);
   });
 
   onBeforeUnmount(() => {
     window.removeEventListener('scroll', handleScroll);
+    window.removeEventListener('resize', measureSteps);
   });
 </script>
 
