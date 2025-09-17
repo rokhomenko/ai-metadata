@@ -27,7 +27,7 @@
         <div class="order-5 md:col-start-1 md:col-end-2 md:row-start-2 md:row-end-3
                   text-white font-display font-semibold flex items-center">
           <button class="button">
-            <span class="uppercase">what is this ?</span>
+            <span class="uppercase">what is this?</span>
             <span class="circle">
               <span class="inner">
                 <img :src="play" />
@@ -50,7 +50,6 @@
       </div>
     </div>
   </section>
-  <!-- <div class="cursor-circle"></div> -->
   <div class="relative bg-white z-20">
     <img :src="pixels" class="w-full" />
   </div>
@@ -168,29 +167,37 @@
   }
 
   .circle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: relative;
+  padding: 2px;
+  background: linear-gradient(45deg, #FFFFFF, #FD86FF, #FB38FF, #3858FF, #8BFF78);
+  cursor: pointer;
+  transition: transform 0.3s;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: black;
     border-radius: 50%;
-    position: relative;
-    padding: 2px;
-    background: linear-gradient(45deg, #FFFFFF, #FD86FF, #FB38FF, #3858FF, #8BFF78);
-    -webkit-mask: radial-gradient(farthest-side, #fff 95%, #000 100%) content-box,
-                  radial-gradient(farthest-side, #fff 95%, #000 100%);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-    cursor: pointer;
-    transition: transform 0.3s;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-
-    img {
-      width: 24px;
-      height: 24px;
-    }
+    z-index: 0;
   }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    z-index: 1;
+  }
+}
+
 </style>
