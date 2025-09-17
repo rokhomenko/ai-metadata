@@ -193,11 +193,21 @@
   }
 
   img {
-    width: 24px;
-    height: 24px;
+    width: 15px;
+    height: 15px;
     position: relative;
     z-index: 1;
   }
 }
 
+@media (max-width: 1260px) {
+  .button {
+    transform: scale(0.8);
+    transform-origin: left center;
+
+     &:hover {
+      transform: scale(0.8 * 1.1);
+    }
+  }
+}
 </style>
