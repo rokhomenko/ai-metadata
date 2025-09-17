@@ -8,6 +8,11 @@
     src: url('@/assets/fonts/Gilroy-Regular.ttf');
 }
 
+@font-face {
+    font-family: Gilroy-light;
+    src: url('@/assets/fonts/Gilroy-Light.ttf');
+}
+
 @import "tailwindcss";
 
 @layer base {
@@ -19,6 +24,7 @@
 @theme {
     --font-semibold: "Gilroy-semibold", sans-serif;
     --font-regular: "Gilroy-regular", sans-serif;
+    --font-light: "Gillroy-light", sans-serif;
     --color-border: #4E4E4E;
     --color-font: #181818;
     --color-blue: #2E59E7;
