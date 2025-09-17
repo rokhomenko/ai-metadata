@@ -45,6 +45,8 @@
 
   const sectionRef = ref(null);
 
+  defineExpose({ sectionRef });
+
   const progressBarHeight = ref(0);
   const currentStep = ref(1);
   const stepProgress = ref(0);
@@ -88,20 +90,20 @@
 </script>
 
 <style scoped lang="scss">
-.progress,
-.progress-blue {
-  top: 20vh;
-}
+  .progress,
+  .progress-blue {
+    top: 20vh;
+  }
 
-.steps {
-  margin-top: 20vh;
+  .steps {
+    margin-top: 20vh;
 
-  .step-item {
-    margin-bottom: 30vh;
+    .step-item {
+      margin-bottom: 30vh;
 
-    &:first-child {
-      padding-top: 0;
+      &:first-child {
+        padding-top: 0;
+      }
     }
   }
-}
 </style>

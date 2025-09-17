@@ -60,13 +60,12 @@
 
   const updateHeaderState = () => {
     const scrollY = window.scrollY
-    const questionThreshold = props.questionTop * 0.3
 
     if (scrollY >= props.stepsTop) {
       headerState.value = 'light'
     } else if (scrollY >= props.resultsTop) {
       headerState.value = 'dark'
-    } else if (scrollY >= questionThreshold) {
+    } else if (scrollY >= props.questionTop) {
       headerState.value = 'light'
     } else {
       headerState.value = 'dark'
