@@ -3,25 +3,25 @@
     <img :src="polygon" 
        alt="polygon" 
        class="absolute -top-40 left-0 w-full h-auto z-0 hidden sm:block" />
-    <div class="relative w-full mt-50 p-5 sm:p-10 md:p-15 xl:p-50">
-      <div class="grid grid-cols-1 gap-2 md:grid-cols-4 md:grid-rows-4 md:gap-0">
+    <div class="relative w-full mt-50 p-5 sm:p-10 md:p-15 2xl:p-30 3xl:p-50">
+      <div class="grid grid-cols-1 gap-2 md:grid-cols-4 md:grid-rows-4 md:gap-0 items-center">
         <div class="order-1 md:col-span-2 md:row-start-1 md:row-end-2
-                    xl:text-hero-title lg:text-[80px] md:text-[70px]
+                    3xl:text-hero-title 2xl:text-[120px] xl:text-[100px] lg:text-[80px] md:text-[70px] leading-tight
                     text-white font-display font-semibold">
           AI YouTube 
         </div>
         <div class="order-2 md:col-start-2 md:col-end-4 md:row-start-2 md:row-end-3
-                    xl:text-hero-title lg:text-[70px] md:text-[70px]
+                    3xl:text-hero-title 2xl:text-[120px] xl:text-[100px] lg:text-[70px] md:text-[70px] leading-tight
                     text-white font-display font-semibold">
           Metadata 
         </div>
         <div class="order-3 md:col-span-2 md:row-start-3 md:row-end-4
-                    xl:text-hero-title lg:text-[80px] md:text-[70px]
+                    3xl:text-hero-title 2xl:text-[120px] xl:text-[100px] lg:text-[80px] md:text-[70px] leading-tight
                     text-white font-display font-semibold">
           Translation
         </div>
-        <div class="order-4 md:col-start-3 md:col-end-4 md:row-start-3 md:row-end-4
-                  text-white font-regular text-hero-description">
+        <div class="order-4 md:col-start-3 md:col-end-4 md:row-start-3 md:row-end-4 xl:w-[70%]
+            text-white font-regular lg:text-[17px] md:text-sm xl:text-hero-description">
           Take Your YouTube Content Global by Localizing Your YouTube Metadata.
         </div>
         <div class="order-5 md:col-start-1 md:col-end-2 md:row-start-2 md:row-end-3
@@ -37,7 +37,7 @@
         </div>
         <div 
           ref="order6Ref"
-          class="order-6 md:col-start-4 md:col-end-5 z-50 md:row-start-3 md:row-end-5 flex justify-center items-center relative overflow-hidden"
+          class="order-6 md:col-start-4 md:col-end-5 md:row-start-3 md:row-end-5 h-full z-50 flex justify-center items-center relative"
         >
           <div 
             ref="tryBtnRef"
