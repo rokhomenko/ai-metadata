@@ -21,13 +21,48 @@
   }
 }
 
+@layer components {
+  .hero-title {
+    @apply text-white font-semibold leading-tight;
+
+    @media (min-width: 768px) { /* md */
+      @apply text-[70px];
+    }
+    @media (min-width: 1024px) { /* lg */
+      @apply text-[80px];
+    }
+    @media (min-width: 1280px) { /* xl */
+      @apply text-[100px];
+    }
+    @media (min-width: 1536px) { /* 2xl */
+      @apply text-[120px];
+    }
+    @media (min-width: 1840px) { /* 3xl */
+      @apply text-[140px];
+    }
+  }
+
+  .hero-description {
+    @apply text-white font-regular;
+
+    @media (min-width: 768px) {
+      @apply text-[14px];
+    }
+    @media (min-width: 1024px) {
+      @apply text-[17px];
+    }
+    @media (min-width: 1280px) {
+      @apply text-[20px];
+    }
+  }
+}
+
 @theme {
-    --font-semibold: "Gilroy-semibold", sans-serif;
-    --font-regular: "Gilroy-regular", sans-serif;
-    --font-light: "Gillroy-light", sans-serif;
-    --color-border: #4E4E4E;
-    --color-font: #181818;
-    --color-blue: #2E59E7;
-    --text-hero-title: 140px;
-    --text-hero-description: 20px;
+  --breakpoint-3xl: 1840px;
+  --font-semibold: "Gilroy-semibold", sans-serif;
+  --font-regular: "Gilroy-regular", sans-serif;
+  --font-light: "Gillroy-light", sans-serif;
+  --color-border: #4E4E4E;
+  --color-font: #181818;
+  --color-blue: #2E59E7;
 }
